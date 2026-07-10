@@ -3,20 +3,21 @@ kind: Application
 metadata:
   name: kong-cp
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: 'https://github.com/YOUR_ORG/YOUR_REPO.git' # YOUR GIT REPO
-    path: . # Path where values-cp.yaml is located
-    targetRevision: HEAD
-    helm:
-      valueFiles:
-        - kong/values-cp.yaml # Path to your values file
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: kong
+  sources:
+    - repoURL: https://charts.konghq.com
+      chart: kong
+      targetRevision: 2.37.0
+      helm:
+        valueFiles:
+          - kong/values-cp.yaml  # This MUST match the 'ref' below
+    - repoURL: https://github.com/NirvanaDogra/DevOps.git
+      targetRevision: main
+      ref: values                   # This 'ref' creates the '$values' alias
   syncPolicy:
     automated:
       prune: true
