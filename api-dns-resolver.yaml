@@ -1,0 +1,9 @@
+# # api-dns-resolver.yaml
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: api-production-internal  # This is the DNS name Kong will look up
+#   namespace: default
+# spec:
+#   type: ExternalName
+#   externalName: host.docker.internal

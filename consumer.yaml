@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: my-new-consumer
+  namespace: kong
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: developer-user
+custom_id: dev-123

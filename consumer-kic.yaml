@@ -1,0 +1,11 @@
+# apiVersion: configuration.konghq.com/v1
+# kind: KongConsumerGroup
+# metadata:
+#   name: kong-cp-consumer-group
+#   annotations:
+#     kubernetes.io/ingress.class: kong
+# spec:
+#   selector:
+#     matchLabels:
+#       app: "kong-cp"
+#   name: "my-sample"

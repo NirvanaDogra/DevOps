@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong-cp
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/YOUR_ORG/YOUR_REPO.git' # YOUR GIT REPO
+    path: . # Path where values-cp.yaml is located
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - kong/values-cp.yaml # Path to your values file
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kong
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

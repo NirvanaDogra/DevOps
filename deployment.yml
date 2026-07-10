@@ -1,0 +1,44 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: "kong-cp-deployment"
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: "kong-cp"
+#   template:
+#     metadata:
+#       labels:
+#         app: "kong-cp"
+#     spec:
+#       containers:
+#         - name: kong-cp
+#           image: "kong/kong-gateway:3.13.0.2"
+#           imagePullPolicy: Never
+#           env:
+#             - name: KONG_DATABASE
+#               value: "postgres"
+#             - name: KONG_PG_HOST
+#               value: "kong-ee-database"
+#             - name: KONG_PG_DATABASE
+#               value: "kong"
+#             - name: KONG_PG_USER
+#               value: "kong"
+#             - name: KONG_PG_PASSWORD
+#               value: "kong"
+#             - name: KONG_ADMIN_LISTEN
+#               value: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
+#             - name: KONG_ADMIN_GUI_LISTEN
+#               value: "0.0.0.0:8002, 0.0.0.0:8445 ssl"
+#             - name: KONG_ADMIN_GUI_URL
+#               value: "http://localhost:8002"
+#             - name: KONG_PASSWORD
+#               value: "handyshake"
+#           ports:
+#             - containerPort: 8000  # Proxy HTTP
+#             - containerPort: 8443  # Proxy HTTPS
+#             - containerPort: 8001  # Admin API HTTP
+#             - containerPort: 8444  # Admin API HTTPS
+#             - containerPort: 8002  # Kong Manager HTTP
+#             - containerPort: 8445  # Kong Manager HTTPS

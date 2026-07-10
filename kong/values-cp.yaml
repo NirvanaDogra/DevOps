@@ -1,0 +1,40 @@
+image:
+  repository: kong/kong-gateway
+  tag: "3.13.0.2"
+
+enterprise:
+  enabled: false
+
+role: traditional
+
+database:
+  enabled: true
+  type: postgres
+  postgres:
+    host: kong-ee-database-postgresql
+    port: 5432
+    user: kong
+    password: kong
+    database: kong
+env:
+  database: postgres
+  pg_host: kong-ee-database-postgresql
+  pg_user: kong
+  pg_password: kong
+  pg_database: kong
+
+manager:
+  enabled: true
+  type: LoadBalancer
+  env:
+    KONG_ADMIN_API_URL: https://kong-cp-kong-admin.kong.svc.cluster.local:8444
+    KONG_ADMIN_GUI_URL: https://localhost:8445
+
+admin:
+  enabled: true
+  type: LoadBalancer
+
+
+runMigrations: true
+
+
