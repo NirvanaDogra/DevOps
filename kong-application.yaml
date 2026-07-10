@@ -14,7 +14,7 @@ spec:
       targetRevision: 2.37.0
       helm:
         valueFiles:
-          - values/kong/values-cp.yaml  # This MUST match the 'ref' below
+          - kong/values-cp.yaml  # This MUST match the 'ref' below
     - repoURL: https://github.com/NirvanaDogra/DevOps.git
       targetRevision: main
       path: core-mono/Kong/deployment/kong-cp
