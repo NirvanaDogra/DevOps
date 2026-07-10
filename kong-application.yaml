@@ -14,9 +14,10 @@ spec:
       targetRevision: 2.37.0
       helm:
         valueFiles:
-          - kong/values-cp.yaml  # This MUST match the 'ref' below
+          - values/kong/values-cp.yaml  # This MUST match the 'ref' below
     - repoURL: https://github.com/NirvanaDogra/DevOps.git
       targetRevision: main
+      path: core-mono/Kong/deployment/kong-cp
       ref: values                   # This 'ref' creates the '$values' alias
   syncPolicy:
     automated:
