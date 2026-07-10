@@ -9,6 +9,19 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kong
   sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: postgresql
+      targetRevision: 15.x.x
+      helm:
+        parameters:
+          - name: auth.username
+            value: kong
+          - name: auth.password
+            value: kong
+          - name: auth.database
+            value: kong
+          - name: fullnameOverride
+            value: kong-ee-database-postgresql
     - repoURL: https://charts.konghq.com
       chart: kong
       targetRevision: 2.37.0
@@ -18,7 +31,7 @@ spec:
     - repoURL: https://github.com/NirvanaDogra/DevOps.git
       targetRevision: main
       path: .
-      ref: values                   # This 'ref' creates the '$values' alias
+      ref: values
   syncPolicy:
     automated:
       prune: true
