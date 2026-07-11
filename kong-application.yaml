@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: postgresql
-      targetRevision: 15.x.x
+      targetRevision: latest
       helm:
         parameters:
           - name: auth.username
